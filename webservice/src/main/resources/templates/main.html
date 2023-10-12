@@ -25,9 +25,9 @@
             </thead>
             <tbody>
 	        	<tr th:if="${#lists.size(posts)} > 0" th:each="posts : ${posts}">    
-	        	<!-- 조회된 데이터가 한 개 이상일 때 / ${list}이건 컨트롤러에서 mv객체에 받아온거 -->
-	        	<!-- foreach구문처럼 반복해서 없을 때까지 가져온다. -->
-	        	<!-- list변수는 each가 선언된 tr태그 내에서만 사용가능하다. -->
+	        	<!-- 조회된 데이터가 한 개 이상일 때 / ${list}이건 컨트롤러에서 mv 객체에 받아온거 -->
+	        	<!-- foreach 구문처럼 반복해서 없을 때까지 가져온다. -->
+	        	<!-- list 변수는 each 가 선언된 tr 태그 내에서만 사용가능하다. -->
 	        		<td th:text="${posts.id}"></td>
 	        		<td th:text="${posts.title}"></td>
 	        		<td th:text="${posts.author}"></td>
