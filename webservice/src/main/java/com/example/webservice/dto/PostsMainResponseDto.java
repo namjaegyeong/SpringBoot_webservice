@@ -6,10 +6,7 @@ import java.util.Optional;
 
 import com.example.webservice.domain.posts.Posts;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
@@ -19,7 +16,6 @@ public class PostsMainResponseDto {
     private String author;
     private String modifiedDate;
 
-    @Builder
     public PostsMainResponseDto(Posts entity) {
         id = entity.getId();
         title = entity.getTitle();

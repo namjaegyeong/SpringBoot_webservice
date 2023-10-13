@@ -1,8 +1,7 @@
 package com.example.webservice.domain.posts;
 
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 /**
 	여기서 Entity 클래스와 거의 유사한 형태임에도 DTO 클래스를 추가로 생성했는데요.
@@ -16,17 +15,11 @@ import lombok.NoArgsConstructor;
  **/
 
 @Getter
-@NoArgsConstructor(access= AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class PostsSaveRequestDto {
 	private String title;
 	private String content;
 	private String author;
-
-	public PostsSaveRequestDto(String title, String content, String author) {
-		this.title = title;
-		this.content = content;
-		this.author = author;
-	}
 
 	public Posts toEntity() {
 		return Posts.builder().title(title).content(content).author(author).build();

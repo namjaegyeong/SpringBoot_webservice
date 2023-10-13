@@ -4,12 +4,17 @@ import com.example.webservice.domain.posts.PostsSaveRequestDto;
 import com.example.webservice.dto.PostsMainResponseDto;
 import com.example.webservice.service.PostsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.net.URI;
 import java.util.List;
 
 // @RestController 는 @ResponseBody 를 모든 메소드에서 적용해줍니다.
@@ -62,10 +67,18 @@ public class WebRestController {
     public String hello() {
         return "Hello TWOSOMEPLACE";
     }
-	
+
+    // @ModelAttribute 를 이용해 form data 를 객체로 바로 맵핑하는 방법
 	@PostMapping("/posts")
-	public void savePosts(PostsSaveRequestDto dto) {
+	public ResponseEntity<?> savePosts(@ModelAttribute PostsSaveRequestDto dto) {
         System.out.println(dto.getAuthor());
+        System.out.println(dto.getTitle());
+        System.out.println(dto.getContent());
+
         postsService.save(dto);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("/main"));
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
 	}
 }
